@@ -9,8 +9,14 @@ object gimenez {
 	var deuda = 0
 	method cobrarSueldo () {
 		totalAcumulado = totalAcumulado + sueldo
-		if(deuda = 0) {dineroActual = dineroActual + sueldo}
-		else {dineroActual = sueldo - deuda}
+		dineroActual = dineroActual + sueldo
+		if(deuda > 0 and dineroActual >= deuda) {dineroActual = dineroActual - deuda
+			deuda = 0
+		}
+		if(deuda > 0 and dineroActual < deuda) {deuda = deuda - dineroActual
+			dineroActual = 0
+		}
+	}
 	method gastar(cuanto) {
 		if(dineroActual < cuanto){
 			deuda = deuda + (cuanto - dineroActual)
@@ -21,7 +27,7 @@ object gimenez {
 	method totalDeuda () {return deuda}
 	method totalDinero () {return dineroActual} 
 	method totalCobrado () {return totalAcumulado}
-	method sueldo() { return 15000 }
+	method sueldo() { return sueldo }
 	method sueldo(nuevoValor) { sueldo = nuevoValor }
 }
 
@@ -33,7 +39,7 @@ object baigorria {
 		cantidadEmpanadasVendidas += 1
 	}
 	method sueldo() = cantidadEmpanadasVendidas * montoPorEmpanada
-}
+	}
 
 object galvan {
 	var dinero = 300000
